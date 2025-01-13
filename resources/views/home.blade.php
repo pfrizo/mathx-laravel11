@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
@@ -109,7 +109,7 @@
         <div class="container">
             <div class="row">
                 <div class="alert alert-danger text-center mt-3">
-                    Por favor, selecione pelo menos uma operação. As parcelas devem ser números entre 0 e 999. O número de exercícios deve variar entre 5 e 50.
+                    Por favor, selecione pelo menos uma operação. O intervalo deve ser de números entre 0 e 999. O número de exercícios deve variar entre 5 e 50.
                 </div>
             </div>
         </div>

@@ -44,11 +44,11 @@
     <div class="container mt-5">
         <div class="row">
             <div class="col">
-                <a href="{{ route('home') }}" class="btn btn-primary px-5">VOLTAR</a>
+                <a href="{{ route('home') }}" class="btn btn-primary px-5">Voltar</a>
             </div>
             <div class="col text-end">
-                <a href="{{ route('exportExercises') }}" class="btn btn-secondary px-5">DESCARREGAR EXERCÍCIOS</a>
-                <a href="{{ route('printExercises') }}" class="btn btn-secondary px-5">IMPRIMIR EXERCÍCIOS</a>
+                <a href="{{ route('exportExercises') }}" class="btn btn-secondary px-5">Exportar Exercícios</a>
+                <a href="{{ route('printExercises') }}" class="btn btn-secondary px-5">Imprimir Exercícios</a>
             </div>
         </div>
     </div>
