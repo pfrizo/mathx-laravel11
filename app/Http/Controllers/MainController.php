@@ -58,18 +58,37 @@ class MainController extends Controller
         echo '<hr>';
 
         foreach($exercises as $ex){
-            echo '<h2><small>' . str_pad($ex['exercise_number'], 2, "0", STR_PAD_LEFT) . ' >> </small> ' . $ex['exercise'] . '</h2>';
+            echo '<h2><small>' . $ex['exercise_number'] . ' >> </small> ' . $ex['exercise'] . '</h2>';
         }
 
         echo '<hr>';
         echo '<small>Soluções</small><br>';
         foreach($exercises as $ex){
-            echo '<small>' . str_pad($ex['exercise_number'], 2, "0", STR_PAD_LEFT) . ' >> ' . $ex['result'] . '</small><br>';
+            echo '<small>' . $ex['exercise_number'] . ' >> ' . $ex['result'] . '</small><br>';
         }
     }
 
     public function exportExercises(){
+        if(!session()->has('exercises')) return redirect()->route('home');
 
+        $exercises = session('exercises');
+
+        $filename = 'exercises_' . env('APP_NAME') . '_' .date('YmdHis') . '.txt';
+
+        $content = '';
+        foreach($exercises as $ex){
+            $content .= $ex['exercise_number'] . ' > ' . $ex['exercise'] . "\n";
+        }
+
+        $content .= "\n";
+        $content .= "Soluções\n" . str_repeat('-', 20) . "\n";
+        foreach($exercises as $ex){
+            $content .= $ex['exercise_number'] . ' > ' . $ex['result'] . "\n";
+        }
+
+        return response($content)
+            ->header('Content-Type', 'text/plain')
+            ->header('Content-Disposition', 'attachment; filename="' . $filename . '"');
     }
 
     private function generateExercise($index, $operations, $min, $max): array
@@ -109,7 +128,7 @@ class MainController extends Controller
 
             return [
                 'operation' => $operation,
-                'exercise_number' => $index,
+                'exercise_number' => str_pad($index, 2, "0", STR_PAD_LEFT),
                 'exercise' => $exercise,
                 'result' => "$exercise $result"
             ];
